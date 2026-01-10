@@ -109,7 +109,7 @@ export default function Details() {
         alt={recipeDetails.title}
         className="w-130 rounded-3xl h-80 object-cover sticky"
       />
-      <div className="h-100 overflow-auto p-5 px-7">
+      <div className="h-100 overflow-y-auto p-5 px-7 block">
         <span className="text-sm text-cyan-800">{recipeDetails.publisher}</span>
         <h3 className="font-bold text-xl my-2">{recipeDetails.title}</h3>
         <button
