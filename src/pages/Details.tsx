@@ -4,7 +4,7 @@ import { MdAccessTime } from "react-icons/md";
 import { PiBowlSteam } from "react-icons/pi";
 import { GlobalContext } from "../GlobalContextComponent";
 import type { recipeCardProps } from "../components/RecipeCard";
-
+import { Circles } from "react-loader-spinner";
 type ingredientsType = {
   quantity: number;
   unit: string;
@@ -94,15 +94,22 @@ export default function Details() {
   }, [id]);
   if (error) return <h1 className="text-center">{error}</h1>;
   if (loading)
-    return <h1 className="text-center">Loading Details... Please Wait</h1>;
+    return <span className="w-fit mx-auto block"><Circles
+  height="80"
+  width="80"
+  color="pink"
+  ariaLabel="three-dots-loading"
+  wrapperStyle={{ margin: '20px' }}
+  visible={true}
+/></span>;
   return recipeDetails ? (
     <div className="w-9/10 lg:w-4/5 mx-auto flex gap-6">
       <img
         src={recipeDetails.image_url}
         alt={recipeDetails.title}
-        className="w-130 rounded-3xl h-80 object-cover"
+        className="w-130 rounded-3xl h-80 object-cover sticky"
       />
-      <div>
+      <div className="h-100 overflow-auto p-5 px-7">
         <span className="text-sm text-cyan-800">{recipeDetails.publisher}</span>
         <h3 className="font-bold text-xl my-2">{recipeDetails.title}</h3>
         <button
@@ -119,7 +126,7 @@ export default function Details() {
           {recipeDetails.cooking_time} minutes
         </p>
         <h3 className="font-bold text-xl">Ingredients: </h3>
-        <ol className="flex flex-col gap-2.5 ml-6">
+        <ol className="flex flex-col gap-2.5 ml-6 ">
           {recipeDetails.ingredients.map(
             (ingredient: ingredientsType, index: number) => (
               <li className="list-decimal pl-2" key={index}>
